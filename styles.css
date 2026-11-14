@@ -125,3 +125,60 @@ footer {
     gap: 0.5rem;
   }
 }
+
+.stack {
+  display: grid;
+  gap: 0.75rem;
+  max-width: 28rem;
+}
+
+.stack label {
+  display: grid;
+  gap: 0.25rem;
+  font-weight: bold;
+}
+
+.stack input,
+.stack select {
+  font: inherit;
+  font-weight: normal;
+  padding: 0.5rem;
+  border: 1px solid var(--color-crust);
+  border-radius: 4px;
+  background: #fff;
+}
+
+button.button {
+  border: 0;
+  font: inherit;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.button-secondary {
+  background: transparent;
+  color: var(--color-crust);
+  border: 2px solid var(--color-crust);
+}
+
+.link-button {
+  background: none;
+  border: 0;
+  padding: 0;
+  font: inherit;
+  color: var(--color-crust);
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.orders {
+  padding-left: 1.25rem;
+}
+
+.suggestion {
+  white-space: pre-line;
+}
+
+.button-secondary:hover {
+  color: var(--color-cream);
+}

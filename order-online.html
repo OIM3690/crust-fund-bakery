@@ -24,15 +24,61 @@
 
   <main>
     <h1>Order Online</h1>
-    <div class="coming-soon">
-      <h2>Coming Soon</h2>
-      <p>Online ordering isn't available yet. In the meantime, stop by in
-        person &mdash; see our <a href="visit-us.html">hours and location</a>.</p>
-    </div>
+    <p>Reserve this week's bakes and pay when you pick them up.</p>
+
+    <section id="signed-out">
+      <h2>Sign in to pre-order</h2>
+      <form id="auth-form" class="stack">
+        <label>Email <input type="email" id="email" required autocomplete="email"></label>
+        <label>Password <input type="password" id="password" required minlength="6" autocomplete="current-password"></label>
+        <div class="cta-group">
+          <button type="submit" class="button">Sign in</button>
+          <button type="button" class="button button-secondary" id="sign-up">Create account</button>
+        </div>
+      </form>
+    </section>
+
+    <section id="signed-in" hidden>
+      <p>Signed in as <strong id="who"></strong>. <button type="button" class="link-button" id="sign-out">Sign out</button></p>
+
+      <h2>New pre-order</h2>
+      <form id="order-form" class="stack">
+        <label>Item
+          <select id="item" required>
+            <option>Classic Butter Croissant</option>
+            <option>Cinnamon Roll</option>
+            <option>Sourdough Loaf</option>
+            <option>Blueberry Muffin</option>
+            <option>Everything Bagel w/ Cream Cheese</option>
+            <option>Drip Coffee</option>
+            <option>Cold Brew</option>
+          </select>
+        </label>
+        <label>Quantity <input type="number" id="quantity" min="1" max="24" value="1" required></label>
+        <label>Pickup date <input type="date" id="pickup-date" required></label>
+        <button type="submit" class="button">Pre-order</button>
+      </form>
+
+      <h2>Your pre-orders</h2>
+      <ul id="orders" class="orders"></ul>
+    </section>
+
+    <section>
+      <h2>Help me choose</h2>
+      <form id="suggest-form" class="stack">
+        <label>What is the occasion? <input type="text" id="occasion" maxlength="200" required
+          placeholder="Breakfast for six at the office"></label>
+        <button type="submit" class="button">Suggest</button>
+      </form>
+      <p id="suggestion" class="suggestion"></p>
+    </section>
+
+    <p id="message" role="status"></p>
   </main>
 
   <footer>
     <p>&copy; 2026 Crust Fund Bakery</p>
   </footer>
+  <script type="module" src="order.js"></script>
 </body>
 </html>

@@ -9,13 +9,17 @@ read `PRD.md` before making page-level changes; it defines what each page should
 
 ## Architecture
 
-* Plain static HTML/CSS (+ minimal JS if needed). No build step, no bundler, no
-  package.json — don't introduce one without asking.
-* No backend, database, or payment/ordering integration in v1. "Order Online"
-  and "Catering" pages must show a "Coming Soon" message, not real forms or
-  checkout flows (see PRD §6/§9).
-* Menu content on the **Menu** page is manually edited HTML, updated weekly —
-  not CMS- or data-driven. Don't build a menu data pipeline for this.
+* Plain static HTML/CSS/JS. No build step, no bundler, no package.json — don't
+  introduce one without asking.
+* v2 adds pre-orders (PRD §11): Supabase for accounts and the `bakery_preorders`
+  table, called from the browser in `order.js` with the publishable key; Row Level
+  Security decides who sees which rows. Never put a secret key in a page.
+* The one server-side piece is `api/suggest.js`, a Vercel function that calls the
+  model. Its key comes from Vercel's environment variables, never from the repo.
+* "Catering" still shows "Coming Soon". No payments.
+* Menu content on the **Menu** page is manually edited HTML, updated weekly. The
+  same items are listed in `order-online.html` and `api/suggest.js`; change all
+  three together.
 
 ## Conventions
 
@@ -26,5 +30,6 @@ read `PRD.md` before making page-level changes; it defines what each page should
 
 ## Build and Test
 
-No build or test tooling exists yet. Open `index.html` directly in a browser to
-preview changes.
+No build tooling. Static pages preview in a browser, but sign-in and Help me
+choose need the deployed site: test on the vercel.app link, with two accounts, and
+check that each sees only its own pre-orders.

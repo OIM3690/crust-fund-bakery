@@ -78,3 +78,29 @@ To be manually replaced with real weekly content; used as placeholder for now:
 * Catering request form with backend handling (email/CRM integration).
 * CMS or admin tool for non-technical weekly menu updates.
 * Customer accounts, promotions, loyalty features.
+
+### 11. v2: Pre-orders (November 2026)
+
+Emily's most common request since v1: let regulars reserve items before they come in, so the sourdough is not gone by 9 a.m. v2 adds pre-orders and moves "Customer accounts" out of section 10.
+
+| Page | v2 Behavior |
+|---|---|
+| **Order Online** | A customer creates an account with email and password, or signs in. Signed in, they pre-order an item from this week's menu (quantity 1 to 24, a pickup date) and see a list of **their own** pre-orders, never anyone else's. Pay at pickup. |
+| **Order Online: Help me choose** | A customer describes the occasion ("breakfast for six at the office") and gets a suggestion from this week's menu, with quantities and a total. |
+
+**Who sees what**
+
+* A signed-out visitor sees the sign-in form and nothing else.
+* A customer sees only the pre-orders they placed.
+* Emily sees every pre-order in the Supabase dashboard (Table Editor). An owner page is Later.
+
+**Technical (v2)**
+
+* Pre-orders and accounts: Supabase (database and Auth). The page talks to it from the browser with the project's publishable key; Row Level Security on the table decides which rows each customer can read or add.
+* Help me choose: a Vercel function, `api/suggest.js`, calls the model with instructions written for this bakery. The OpenRouter key lives in Vercel's environment variables.
+* Still no build step. Deployed on Vercel, which serves the pages and runs the function.
+
+**Still out of scope**
+
+* Payment, editing or cancelling a pre-order online (call the bakery), an owner page, email confirmations.
+* This week's menu now lives in three places: `menu.html`, the item list on Order Online, and the instructions in `api/suggest.js`. Change all three each week, until the menu moves into the database (Later).
