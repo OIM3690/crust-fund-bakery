@@ -1,12 +1,5 @@
 // Pre-orders for Crust Fund Bakery: sign in, add a pre-order, list your own.
-// The publishable key is meant to be public. What keeps one customer from
-// reading another's pre-orders is Row Level Security on the table, not the key.
-import { createClient } from "https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.118.0/+esm";
-
-const supabase = createClient(
-  "https://zsjjzmkhevepdjnwndch.supabase.co",
-  "sb_publishable_4Q1KO2S9NP7FmOQcYCPYHg_5ubPx8yX"
-);
+import { supabase } from "./supabase.js";
 
 const message = document.querySelector("#message");
 

@@ -9,10 +9,11 @@ read `PRD.md` before making page-level changes; it defines what each page should
 
 ## Architecture
 
-* Plain static HTML/CSS/JS. No build step, no bundler, no package.json — don't
+* Plain static HTML/CSS/JS: pages in the root folder, styles in `css/`, scripts
+  in `js/`. No build step, no bundler, no package.json — don't
   introduce one without asking.
 * v2 adds pre-orders (PRD §11): Supabase for accounts and the `bakery_preorders`
-  table, called from the browser in `order.js` with the publishable key; Row Level
+  table, called from the browser in `js/order.js` through `js/supabase.js`, with the publishable key; Row Level
   Security decides who sees which rows. Never put a secret key in a page.
 * The one server-side piece is `api/suggest.js`, a Vercel function that calls the
   model. Its key comes from Vercel's environment variables, never from the repo.
